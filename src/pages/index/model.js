@@ -1,14 +1,14 @@
-import * as indexApi from './service';
+import * as api from './service';
 
 export default {
   namespace: 'home',
   state: {
-    keai: '测试数据666'
+    name: '测试用'
   },
 
   effects: {
-    * effectsDemo(_, { call, put }) {
-      const { status, data } = yield call(indexApi.demo, {});
+    * getUserName(_, { call, put }) {
+      const { status, data } = yield call(api.getUserName, {});
       if (status === 'ok') {
         yield put({
           type: 'save',

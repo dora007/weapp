@@ -1,6 +1,6 @@
 import Request from '../../utils/request';
 
-export const demo = (data) => {
+export const getUserName = (data) => {
   return Request({
     url: '路径',
     method: 'POST',

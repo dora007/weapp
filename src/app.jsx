@@ -5,11 +5,18 @@ import dva from "./utils/dva";
 import models from "./models/models";
 import { Provider } from "@tarojs/redux";
 import "./app.less";
+import "taro-ui/dist/style/index.scss";
+import "taro-ui/dist/style/components/tab-bar.scss";
+import "taro-ui/dist/style/components/badge.scss";
+import "taro-ui/dist/style/components/icon.scss";
+
 const dvaApp = dva.createApp({
   initialState: {},
   models: models
 });
+
 const store = dvaApp.getStore();
+
 class App extends Component {
   config = {
     pages: ["pages/index/index"],
