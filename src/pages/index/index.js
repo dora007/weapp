@@ -1,11 +1,12 @@
-import Taro, { useEffect } from '@tarojs/taro';
-import { View, Text } from '@tarojs/components';
+import Taro, { useEffect, useState } from '@tarojs/taro';
+import { View, Text, Swiper, SwiperItem } from '@tarojs/components';
 import { connect } from '@tarojs/redux';
 import './index.less';
-import { AtButton, AtTabBar } from 'taro-ui'
+import { AtButton, AtTabBar, AtSearchBar, AtNavBar } from 'taro-ui'
 
 const Index = props => {
   const { home, loading } = props;
+  const { value, setValue } = useState()
 
   useEffect(() => {
     console.log(props, home.name)
@@ -17,18 +18,61 @@ const Index = props => {
     console.log("aa")
   }
 
+  const onChange = (value) => {
+    console.log(value)
+  }
+
+  const onActionClick = () => {
+    console.log("开始搜索")
+  }
+
+  const handleClick = (value) => {
+    console.log(value)
+    switch (value) {
+      case 0:
+        Taro.redirectTo({ url: '/pages/index/index' })
+        break;
+      case 1:
+        console.log("aaa")
+        Taro.redirectTo({ url: '/pages/order/index' })
+        break;
+      case 2: break
+    }
+  }
+
 
   return (
     <View className="index-page">
+      <AtSearchBar
+        value={value}
+        onChange={onChange}
+        onActionClick={onActionClick}
+      />
       {/* <AtButton type='primary' onClick={() => clickButton()}>按钮文案</AtButton> */}
+      {/* <Swiper
+        className='test-h'
+        indicatorColor='#999'
+        indicatorActiveColor='#333'
+        circular
+        indicatorDots
+        autoplay>
+        <SwiperItem>
+          <View className='demo-text-1'>
+            <Image src='https://storage.360buyimg.com/mtd/home/111543234387022.jpg' width="1000px"></Image>
+          </View>
+        </SwiperItem>
+        <SwiperItem>
+          <View className='demo-text-2'>2</View>
+        </SwiperItem>
+      </Swiper> */}
       <AtTabBar
         fixed
         tabList={[
           { title: '首页', iconType: 'home', },
           { title: '订单', iconType: 'menu' },
-          { title: '我的', iconType: 'user', }
+          { title: '个人中心', iconType: 'user', }
         ]}
-      // onClick={this.handleClick.bind(this)}
+        onClick={handleClick}
       // current={this.state.current}
       />
     </View>

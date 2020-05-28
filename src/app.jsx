@@ -5,10 +5,7 @@ import dva from "./utils/dva";
 import models from "./models/models";
 import { Provider } from "@tarojs/redux";
 import "./app.less";
-import "taro-ui/dist/style/index.scss";
-import "taro-ui/dist/style/components/tab-bar.scss";
-import "taro-ui/dist/style/components/badge.scss";
-import "taro-ui/dist/style/components/icon.scss";
+import "taro-ui/dist/style/index.scss"; // 全局引入一次即可
 
 const dvaApp = dva.createApp({
   initialState: {},
@@ -19,12 +16,13 @@ const store = dvaApp.getStore();
 
 class App extends Component {
   config = {
-    pages: ["pages/index/index"],
+    pages: ["pages/index/index", "pages/order/index"],
     window: {
       backgroundTextStyle: "light",
       navigationBarBackgroundColor: "#fff",
       navigationBarTitleText: "WeChat",
       navigationBarTextStyle: "black"
+      // navigationStyle: "custom"
     }
   };
   componentDidMount() {}
